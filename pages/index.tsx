@@ -22,7 +22,7 @@ const Home: NextPage<IProps> = ({ posts }) => {
         {posts.map((post) => (
           <Link
             href={`/post/${post.slug.current}`}
-            as={`/posts/${post.slug.current}`}
+            as={`/post/${post.slug.current}`}
             key={post._id}
           >
             <div className="group cursor-pointer overflow-hidden rounded-lg border">
