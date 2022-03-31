@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import Banner from '../components/Banner'
 import Header from '../components/Header'
 import { sanityClient, urlFor } from '../sanity'
@@ -9,7 +10,6 @@ interface IProps {
 }
 
 const Home: NextPage<IProps> = ({ posts }) => {
-  console.log('🚀 ~ file: index.tsx ~ line 12 ~ posts', posts)
   return (
     <div className="mx-auto max-w-7xl">
       <Head>
@@ -18,6 +18,19 @@ const Home: NextPage<IProps> = ({ posts }) => {
       </Head>
       <Header />
       <Banner />
+      <div className="-mx-2 flex flex-wrap">
+        {posts.map((post) => (
+          <Link
+            href={`/post/${post.slug.current}`}
+            as={`/posts/${post.slug.current}`}
+            key={post._id}
+          >
+            <div>
+              <img src={urlFor(post.mainImage).url()!} />
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   )
 }
